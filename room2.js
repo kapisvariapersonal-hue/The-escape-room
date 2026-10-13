@@ -1,4 +1,4 @@
-/**
+js/
  * Room 2 Logic - The Laboratory
  * Handles guard redirects, reagent sequence tracking, and exit door unlocking.
  */
