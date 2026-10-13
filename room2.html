@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Escape Room - Room 2: The Laboratory</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/storage.js" defer></script>
+  <script src="js/room2.js" defer></script>
+</head>
+<body class="theme-dark-lab">
+  <main class="game-container">
+    <header class="game-header">
+      <span class="room-badge">Room 2 of 2</span>
+      <h1 class="game-title">The Laboratory</h1>
+      <h2 id="lab-greeting" class="greeting-text"></h2>
+    </header>
+
+    <!-- Lab Clue Section -->
+    <section class="card" aria-labelledby="lab-clue-heading">
+      <h2 id="lab-clue-heading">Scorched Lab Journal</h2>
+      <article class="story-card">
+        <div class="clue-title">Chief Chemist's Log</div>
+        <p>
+          "To stabilize the containment matrix and disengage the pressure locks, inject the chemical catalysts in nature's order: <strong>The sky comes first, then blood, then the leaves.</strong>"
+        </p>
+      </article>
+    </section>
+
+    <!-- Console Interaction Section -->
+    <section class="card" aria-labelledby="console-heading">
+      <h2 id="console-heading">Reagent Control Console</h2>
+      <div class="lab-controls">
+        <div class="progress-section">
+          <span class="progress-label" id="progress-desc">Sequence Inputs</span>
+          <div class="dots-container" role="status" aria-labelledby="progress-desc">
+            <span class="dot" id="dot-1" aria-hidden="true"></span>
+            <span class="dot" id="dot-2" aria-hidden="true"></span>
+            <span class="dot" id="dot-3" aria-hidden="true"></span>
+          </div>
+        </div>
+
+        <div id="sequence-buttons" class="button-group" role="group" aria-label="Reagent injectors">
+          <button type="button" class="reagent-btn btn-red" data-color="Red">Red</button>
+          <button type="button" class="reagent-btn btn-blue" data-color="Blue">Blue</button>
+          <button type="button" class="reagent-btn btn-green" data-color="Green">Green</button>
+        </div>
+
+        <div id="lab-feedback" class="feedback-message" role="status" aria-live="polite"></div>
+
+        <a id="exit-link" href="success.html" class="btn btn-success btn-exit" hidden>
+          Proceed to Exit &rarr;
+        </a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Escape Room - Freedom!</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/storage.js" defer></script>
+  <script src="js/success.js" defer></script>
+</head>
+<body class="theme-bright">
+  <main class="game-container">
+    <section class="card success-card" aria-labelledby="escape-title">
+      <div class="celebration-icon" role="img" aria-label="Celebration party popper">🎉</div>
+      <h1 id="escape-title" class="game-title"></h1>
+      <p class="story-card" style="border-left-color: var(--accent-color);">
+        You pushed open the heavy iron hatch and stepped into the crisp morning air. The mystery is solved, and your escape is complete!
+      </p>
+
+      <div class="stats-box">
+        <p id="attempts-display" class="attempts-text"></p>
+        <div id="flawless-container"></div>
+      </div>
+
+      <button type="button" id="play-again-btn" class="btn btn-primary">Play Again</button>
+    </section>
+  </main>
+</body>
+</html>

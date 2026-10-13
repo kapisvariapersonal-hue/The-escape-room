@@ -1,0 +1,588 @@
+/* ==========================================================================
+   The Escape Room - Global & Theme Styles
+   Pure vanilla CSS3 with CSS custom properties (variables),
+   responsive mobile-first layout, and keyboard-first accessibility.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Root Variables & Typography
+   -------------------------------------------------------------------------- */
+:root {
+  /* System font stack only - no external requests */
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+
+  /* Sizing & Radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --max-content-width: 620px;
+
+  /* Global status colors */
+  --error-color: #ef4444;
+  --error-bg: rgba(239, 68, 68, 0.15);
+  --success-color: #10b981;
+  --success-bg: rgba(16, 185, 129, 0.15);
+
+  /* Animation timing */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+}
+
+/* --------------------------------------------------------------------------
+   2. Page Themes (Overriding CSS Variables per body class)
+   -------------------------------------------------------------------------- */
+
+/* Room 1: The Library (Dark, mysterious, warm mahogany & antique gold) */
+body.theme-dark-library {
+  --bg-primary: #120e0b;
+  --bg-surface: #1e1713;
+  --bg-surface-elevated: #2b211a;
+  --border-color: #48382c;
+  --border-focus: #e0a96d;
+  --text-primary: #f8eee4;
+  --text-secondary: #c9b7a7;
+  --text-muted: #8e7a6b;
+  --accent-color: #d4a373;
+  --accent-hover: #faedcd;
+  --accent-contrast: #17110c;
+  --card-glow: rgba(212, 163, 115, 0.12);
+  --tag-bg: #352820;
+  --tag-text: #e0a96d;
+}
+
+/* Room 2: The Laboratory (Dark, cold, slate & cyan/teal glow) */
+body.theme-dark-lab {
+  --bg-primary: #0a1118;
+  --bg-surface: #111d29;
+  --bg-surface-elevated: #182a3b;
+  --border-color: #21435f;
+  --border-focus: #00d2ff;
+  --text-primary: #e6f3fb;
+  --text-secondary: #97b9d1;
+  --text-muted: #5c7e96;
+  --accent-color: #00c9a7;
+  --accent-hover: #1be2bd;
+  --accent-contrast: #071722;
+  --card-glow: rgba(0, 201, 167, 0.14);
+  --tag-bg: #143044;
+  --tag-text: #00e5ff;
+}
+
+/* Success Page: The Escape (Bright, clean, radiant celebration) */
+body.theme-bright {
+  --bg-primary: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #f1f5f9;
+  --border-color: #cbd5e1;
+  --border-focus: #2563eb;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --accent-color: #059669;
+  --accent-hover: #047857;
+  --accent-contrast: #ffffff;
+  --card-glow: rgba(16, 185, 129, 0.15);
+  --tag-bg: #dcfce7;
+  --tag-text: #166534;
+}
+
+/* Text selection styling across themes */
+::selection {
+  background-color: var(--accent-color);
+  color: var(--accent-contrast);
+}
+
+/* --------------------------------------------------------------------------
+   3. Base & Reset
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.25rem 1rem;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+/* Main game wrapper */
+.game-container {
+  width: 100%;
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   4. Header & Badges
+   -------------------------------------------------------------------------- */
+.game-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.room-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  background-color: var(--tag-bg);
+  color: var(--tag-text);
+  border: 1px solid var(--border-color);
+}
+
+.game-title {
+  font-size: 1.875rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.greeting-text {
+  font-size: 1.05rem;
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   5. Cards & Atmospheric Containers
+   -------------------------------------------------------------------------- */
+.card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: 0 10px 25px -5px var(--card-glow), 0 8px 10px -6px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.story-card {
+  position: relative;
+  background-color: var(--bg-surface-elevated);
+  border-left: 4px solid var(--accent-color);
+  padding: 1.25rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.clue-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-color);
+  margin-bottom: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   6. Room 1: Hidden Word & Selection Mechanic
+   -------------------------------------------------------------------------- */
+/* Matches background so invisible by default */
+.hidden-word {
+  color: var(--bg-surface-elevated);
+  background-color: var(--bg-surface-elevated);
+  user-select: text;
+  display: inline;
+  padding: 0 2px;
+  border-radius: 2px;
+  transition: color 0.3s ease, background-color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* Selection reveals the word */
+.hidden-word::selection {
+  background-color: var(--accent-color);
+  color: var(--accent-contrast);
+}
+
+/* Touch fallback: revealed via button */
+.hidden-word.revealed {
+  color: var(--accent-color);
+  background-color: rgba(255, 255, 255, 0.1);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  font-weight: 700;
+  text-shadow: 0 0 8px var(--accent-color);
+}
+
+.clue-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   7. Form Elements, Inputs & Buttons
+   -------------------------------------------------------------------------- */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--text-primary);
+  background-color: var(--bg-surface-elevated);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+input[type="text"]:focus-visible {
+  outline: none;
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px rgba(224, 169, 109, 0.25);
+}
+
+body.theme-dark-lab input[type="text"]:focus-visible {
+  box-shadow: 0 0 0 3px rgba(0, 210, 255, 0.25);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.25rem;
+  font-size: 1rem;
+  font-family: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), transform var(--transition-fast),
+    box-shadow var(--transition-fast), border-color var(--transition-fast);
+  min-height: 46px;
+  text-align: center;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 3px;
+}
+
+.btn-primary {
+  background-color: var(--accent-color);
+  color: var(--accent-contrast);
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text-secondary);
+  border-color: var(--border-color);
+}
+
+.btn-secondary:hover {
+  background-color: var(--bg-surface-elevated);
+  color: var(--text-primary);
+  border-color: var(--text-muted);
+}
+
+.btn-sm {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.825rem;
+  min-height: 36px;
+}
+
+.btn-success {
+  background-color: var(--success-color);
+  color: #ffffff;
+}
+
+.btn-success:hover {
+  background-color: #059669;
+}
+
+.btn-exit {
+  font-size: 1.1rem;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+   8. Room 2: Lab Reagents & Progress Dots
+   -------------------------------------------------------------------------- */
+.lab-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+/* Progress Dots */
+.progress-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.progress-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.dots-container {
+  display: flex;
+  gap: 0.85rem;
+  align-items: center;
+}
+
+.dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--border-color);
+  background-color: transparent;
+  transition: all var(--transition-fast);
+}
+
+.dot.active {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  box-shadow: 0 0 10px var(--accent-color);
+  transform: scale(1.15);
+}
+
+/* Reagent Buttons */
+.button-group {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.85rem;
+  width: 100%;
+}
+
+.reagent-btn {
+  padding: 1.25rem 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: var(--radius-md);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), filter var(--transition-fast);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.reagent-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.15);
+}
+
+.reagent-btn:active {
+  transform: translateY(1px);
+}
+
+.reagent-btn:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 3px;
+}
+
+/* Distinct Reagent Colors */
+.btn-red {
+  background: linear-gradient(135deg, #dc2626, #991b1b);
+  color: #fee2e2;
+  border-color: #ef4444;
+  box-shadow: 0 4px 15px rgba(220, 38, 38, 0.35);
+}
+
+.btn-blue {
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  color: #dbeafe;
+  border-color: #3b82f6;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.35);
+}
+
+.btn-green {
+  background: linear-gradient(135deg, #16a34a, #166534);
+  color: #dcfce7;
+  border-color: #22c55e;
+  box-shadow: 0 4px 15px rgba(22, 163, 74, 0.35);
+}
+
+/* --------------------------------------------------------------------------
+   9. Feedback & Live Regions
+   -------------------------------------------------------------------------- */
+.feedback-message {
+  font-size: 0.95rem;
+  font-weight: 600;
+  min-height: 1.5rem;
+  display: flex;
+  align-items: center;
+  transition: opacity var(--transition-fast);
+}
+
+.feedback-message:empty {
+  display: none;
+}
+
+.feedback-message.error {
+  color: var(--error-color);
+}
+
+.feedback-message.success {
+  color: var(--success-color);
+}
+
+.error-text {
+  font-size: 0.85rem;
+  color: var(--error-color);
+  font-weight: 600;
+  min-height: 1.25rem;
+}
+
+.error-text:empty {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   10. Shake Animation & Accessibility
+   -------------------------------------------------------------------------- */
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  15%, 45%, 75% {
+    transform: translateX(-8px);
+  }
+  30%, 60%, 90% {
+    transform: translateX(8px);
+  }
+}
+
+.shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+/* Disable shake under reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .shake {
+    animation: none !important;
+    border-color: var(--error-color) !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   11. Success Page Elements
+   -------------------------------------------------------------------------- */
+.success-card {
+  text-align: center;
+  align-items: center;
+  padding: 2.5rem 1.5rem;
+  gap: 1.5rem;
+}
+
+.celebration-icon {
+  font-size: 3.5rem;
+  line-height: 1;
+}
+
+.stats-box {
+  background-color: var(--bg-surface-elevated);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 1.25rem 2rem;
+  width: 100%;
+}
+
+.attempts-text {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.flawless-badge {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: #15803d;
+  background-color: #dcfce7;
+  border: 1px solid #86efac;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* --------------------------------------------------------------------------
+   12. Utilities & Responsive Layout
+   -------------------------------------------------------------------------- */
+/* Respect native hidden attribute */
+[hidden] {
+  display: none !important;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 480px) {
+  body {
+    padding: 1rem 0.75rem;
+  }
+  
+  .game-title {
+    font-size: 1.5rem;
+  }
+  
+  .card {
+    padding: 1.25rem 1rem;
+    gap: 1rem;
+  }
+  
+  .button-group {
+    gap: 0.5rem;
+  }
+
+  .reagent-btn {
+    padding: 1rem 0.5rem;
+    font-size: 0.95rem;
+  }
+}

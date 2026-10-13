@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Escape Room - Room 1: The Library</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/storage.js" defer></script>
+  <script src="js/room1.js" defer></script>
+</head>
+<body class="theme-dark-library">
+  <main class="game-container">
+    <header class="game-header">
+      <span class="room-badge">Room 1 of 2</span>
+      <h1 class="game-title">The Library</h1>
+      <p id="player-greeting" class="greeting-text" hidden></p>
+    </header>
+
+    <!-- Initial Registration Form (Hidden once name exists) -->
+    <section id="name-section" class="card" aria-labelledby="name-heading">
+      <h2 id="name-heading">Investigator Registration</h2>
+      <p class="story-card" style="border-left-color: var(--border-color);">
+        A heavy guestbook lies upon a pedestal. Sign your name to step inside the darkened archives.
+      </p>
+      <form id="name-form" novalidate>
+        <div class="form-group">
+          <label for="player-name-input">Investigator Name (1-20 characters):</label>
+          <input 
+            type="text" 
+            id="player-name-input" 
+            name="playerName" 
+            maxlength="20" 
+            autocomplete="name" 
+            placeholder="e.g., Arthur" 
+            required
+          />
+          <div id="name-error" class="error-text" role="alert" aria-live="polite"></div>
+        </div>
+        <button type="submit" id="name-submit-btn" class="btn btn-primary">Enter the Library</button>
+      </form>
+    </section>
+
+    <!-- Puzzle Section (Revealed when name is set) -->
+    <section id="puzzle-section" class="card" aria-labelledby="puzzle-heading" hidden>
+      <h2 id="puzzle-heading">The Locked Archive Door</h2>
+      <article class="story-card">
+        <div class="clue-title">Ancient Manuscript Excerpt</div>
+        <p>
+          Shadows stretch across towering mahogany shelves as silent dust drifts through the cold night.
+          Faded runes warn that darkness consumes all who venture unprepared, yet in the deepest chambers, only a <span id="hidden-clue-word" class="hidden-word">LANTERN</span> shall illuminate the path to freedom.
+        </p>
+        <div class="clue-actions">
+          <button type="button" id="reveal-clue-btn" class="btn btn-secondary btn-sm" aria-expanded="false">
+            Reveal clue (3s)
+          </button>
+        </div>
+      </article>
+
+      <form id="door-form" novalidate>
+        <div class="form-group">
+          <label for="passcode-input">Door Mechanism Passcode:</label>
+          <input 
+            type="text" 
+            id="passcode-input" 
+            name="passcode" 
+            autocomplete="off" 
+            placeholder="Enter the secret word..." 
+            required
+          />
+        </div>
+        <button type="submit" id="unlock-btn" class="btn btn-primary">Unlock Door</button>
+        <div id="door-feedback" class="feedback-message" role="status" aria-live="polite"></div>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
