@@ -1,4 +1,4 @@
-/**
+js/
  * Success Page Logic - The Escape
  * Handles victory presentation, escape statistics, and game state reset.
  */
