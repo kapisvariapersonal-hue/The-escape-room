@@ -2,9 +2,6 @@
 
 A multi-page browser puzzle game built with pure HTML, CSS and JavaScript.
 Solve the puzzle in each room to escape. No frameworks, no backend, no build tools.
-
-**[▶ Play the live demo](https://kapisvariapersonal-hue/github.io/escape-room/)**
-
 ## Features
 
 - 3 pages: The Library, The Laboratory, and the Escape screen
