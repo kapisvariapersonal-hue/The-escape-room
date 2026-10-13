@@ -1,4 +1,4 @@
-/**
+js/
  * Room 1 Logic - The Library
  * Handles player name registration, clue reveal interactions, and door passcode verification.
  */
