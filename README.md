@@ -25,15 +25,13 @@ No installation needed.
 1. Click the green **Code** button → **Download ZIP**, then extract it.
 2. Open `index.html` in your browser.
 
-Or, if you use Git:
 
-```bash
-git clone https://github.com/kapisvariapersonal-hue/escape-room.git
-```
 
 ## Project structure
 
-```
+```<img width="1042" height="777" alt="Screenshot 2026-10-12 215212" src="https://github.com/user-attachments/assets/fb15495d-5c71-4dce-a76a-d2d414f830bb" />
+<img width="1042" height="777" alt="Screenshot 2026-10-12 215212" src="https://github.com/user-attachments/assets/be251f0f-d8e8-4b02-a6b8-409bf5fbc19c" />
+
 escape-room/
 ├── index.html        # Room 1: The Library
 ├── room2.html        # Room 2: The Laboratory
