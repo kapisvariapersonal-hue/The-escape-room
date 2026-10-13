@@ -1,4 +1,4 @@
-/**
+js/
  * The Escape Room - Storage & State Management
  * 
  * SECURITY NOTICE:
