@@ -1,5 +1,4 @@
 # 🔐 The Escape Room
-
 A multi-page browser puzzle game built with pure HTML, CSS and JavaScript.
 Solve the puzzle in each room to escape. No frameworks, no backend, no build tools.
 ## Features
